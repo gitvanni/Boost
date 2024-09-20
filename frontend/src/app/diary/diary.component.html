@@ -1,0 +1,59 @@
+<div class="container mt-4">
+    <!-- Add Diary Section -->
+    <div class="mb-4">
+      <h3>Add a New Diary</h3>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Diary Name"
+          [(ngModel)]="newDiary"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="addDiary()">Add Diary</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- List of Diaries -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Diaries</h3>
+      </div>
+      <ul class="list-group list-group-flush">
+        @for(diary of diaries; track diary.id){
+        <li  class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <h5 class="mb-0">{{ diary.title }}</h5>
+          </div>
+          <div class="button-group">
+            <!-- Button to navigate to the Pages component -->
+            <button
+              class="btn btn-info btn-sm mr-2"
+              [routerLink]="['pages', diary.id]"
+            >
+              Go to diary!
+            </button>
+  
+            <!-- Button to delete the diary -->
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteDiary(diary.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+    }
+      </ul>
+    </div>
+    <div class="text-center"><button 
+      class="btn btn-secondary  " 
+      type="button" 
+      [routerLink] = "'..'">
+      Back 
+    </button>
+  </div>
+</div>
+
+  

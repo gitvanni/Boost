@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Pages</h1>
+    @for(page of pages; track page.id){
+      
+      <!-- Date Display -->
+      <div class="col-md-2 text-center">
+        <h5 class="text-muted">{{ page.date }}</h5>
+      </div>
+      
+      <!-- Page Content --> 
+      <div class="col-md-10">
+        <div class="card card d-flex flex-row justify-content-between align-items-center">
+          <div class="flex-grow-1 p-3">
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="page.content" 
+              (ngModelChange)="updatePage(page.id, page.content)"
+              rows="5" 
+              placeholder="Edit page content here...">
+            </textarea>
+          </div>
+
+          <div class="ml-3 p-3">
+            <button 
+              class="btn btn-danger" 
+              (click)="deletePage(page.id)">
+              Delete Page
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+    <div class="text-center"><button 
+      class="btn btn-secondary" 
+      type="button" 
+      [routerLink] = "'../..'">
+      Back 
+    </button>
+    </div>
+    </div>
+
+  

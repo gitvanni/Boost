@@ -1,0 +1,56 @@
+.container {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    color: #007bff; /* Light blue for the title */
+  }
+  
+  .card {
+    background-color: #ffffff; /* White cards */
+    border: 1px solid #dee2e6;
+  }
+  
+  .card-header {
+    background-color: #e9f5ff; /* Light blue header */
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .card-body {
+    background-color: #f8f9fa; /* Slight gray background for card body */
+  }
+  
+  .input-group .form-control {
+    border: 1px solid #007bff; /* Light blue input field */
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  
+  .btn-success {
+    background-color: #007bff; /* Light blue add button */
+    border: none;
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Light blue show/hide tasks button */
+    border: none;
+  }
+  
+  .btn-danger {
+    background-color: #ff4d4d; /* Red delete button */
+    border: none;
+  }
+  
+  .list-group-item {
+    background-color: #ffffff; /* White background for task items */
+    border-color: #007bff; /* Light blue border for task items */
+  }
+  
+  .list-group-item:hover {
+    background-color: #e9f5ff; /* Light blue hover for task items */
+  }
+  

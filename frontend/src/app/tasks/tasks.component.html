@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Task Manager</h1>
+  
+    <div class="input-group mb-3">
+      <input 
+        type="text" 
+        class="form-control" 
+        [(ngModel)]="newTaskDescription" 
+        placeholder="Task Description" 
+        aria-label="Task Description">
+      <button 
+        class="btn btn-primary" 
+        type="button" 
+        (click)="addTask()">
+        Add Task
+      </button>
+    </div>
+  
+    @for(task of tasks; track task.id){
+     <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="checkbox" 
+              [(ngModel)]="task.isCompleted" 
+              (change)="toggleTaskCompletion(task.id,task.isCompleted)">
+          </div>
+          <div [ngClass]="{'text-decoration-line-through': task.isCompleted}" class="flex-grow-1 mx-3">
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="task.description" 
+              (ngModelChange)="updateTask(task.id, task.description)"
+              [readonly]="task.isCompleted" 
+              rows="2" 
+              placeholder="Edit Task Description">
+            </textarea>
+          </div>
+
+      <button 
+      class="btn btn-danger" 
+      (click)="deleteTask(task.id)">
+      Delete
+    </button>
+        </li>
+    }
+
+    <div class="text-center"><button 
+        class="btn btn-secondary" 
+        type="button" 
+        [routerLink] = "'../..'">
+        Back 
+      </button>
+      </div>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  Boost
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link"  [routerLink]="'home'"[routerLinkActive]="'active'">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'userhome'" [routerLinkActive]="'active'">User Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'schedules'"[routerLinkActive]="'active'">Schedules</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'diaries'"[routerLinkActive]="'active'">Diaries</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  <div class="p-5 rounded" style="background: linear-gradient(to right, #E6FFFA, #98FF98); background-size: cover;">
+  <router-outlet></router-outlet>
+  </div>
+
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <div class="col-md-4 d-flex align-items-center">
+    <span class="mb-3 mb-md-0 text-body-secondary">© 2024 gitvanni</span>
+  </div>
+</footer>
+

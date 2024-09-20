@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Schedules</h1>
+
+    <!-- Add Schedule Form -->
+    <div class="card mb-4 p-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Add a New Schedule</h5>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="newScheduleName" placeholder="Enter schedule name" />
+          <button class="btn btn-success" (click)="createSchedule()">Add Schedule</button>
+        </div>
+      </div>
+    </div>
+  
+    @for(schedule of schedules; track schedule.id){
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">{{ schedule.name }}</h5>
+        <div class="ml-auto"><button 
+          class="btn btn-info" 
+          type="button" 
+          [routerLink] = "['task', schedule.id]">
+          Show Tasks 
+        </button>
+        <button 
+        class="btn btn-danger" 
+        type="button" 
+        (click)="deleteSchedule(schedule.id)">
+        Delete Schedule
+      </button>
+    </div>
+      </div>       
+    }
+    <div class="text-center"><button 
+      class="btn btn-secondary  " 
+      type="button" 
+      [routerLink] = "'..'">
+      Back 
+    </button>
+    </div>
+
+
