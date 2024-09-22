@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { environment } from "../environments/environment.development";
-import { Task } from "./task";
+import { environment } from "../../environments/environment.development";
+import { Task } from "../models/task";
 
 @Injectable({
     providedIn: 'root'
@@ -13,11 +13,6 @@ export class TasksService{
     public getTasksForSchedule(schedule_id:number) : Observable<Task[]>{
         return this.httpClient.get<Task[]>(`${environment.url}/api/schedules/${schedule_id}/tasks`);
       }
-
-      //TODO: mi serve??
-    public getTask(schedule_id: number, task_id: number) : Observable<Task>{
-        return this.httpClient.get<Task>(`${environment.url}/api/schedules/${schedule_id}/tasks/${task_id}`)
-    }
 
     public deleteTask(schedule_id: number, task_id: number) : Observable<any>{
         return this.httpClient.delete(`${environment.url}/api/schedules/${schedule_id}/tasks/${task_id}`)
@@ -37,7 +32,7 @@ export class TasksService{
         return this.httpClient.put(`${environment.url}/api/schedules/${schedule_id}/tasks/${task_id}?update=content`,body)
     }
     
-    public updateStatus(schedule_id:number, task_id: number,is_completed: boolean ){
+    public updateStatus(schedule_id:number, task_id: number,is_completed: boolean ): Observable<any>{
         const body = {
             is_completed: is_completed
         }

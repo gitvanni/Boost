@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { environment } from "../environments/environment.development";
-import { Page } from "./page";
-import { Diary } from "./diary";
+import { environment } from "../../environments/environment.development";
+import { Page } from "../models/page";
+import { Diary } from "../models/diary";
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +26,6 @@ import { Diary } from "./diary";
   
     public createDiary(title:string) :Observable<any>{
       const body = {
-        user_id: 1,
         title: title
       }
       return this.httpClient.post(`${environment.url}/api/diary`,body);

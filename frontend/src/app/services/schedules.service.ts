@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Schedule } from './schedule';
-import { environment } from '../environments/environment.development';
-import { Task } from './task';
+import { Schedule } from '../models/schedule';
+import { environment } from '../../environments/environment.development';
+import { Task } from '../models/task';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,6 @@ export class SchedulesService {
 
   public createSchedule(name:string) :Observable<any>{
     const body = {
-      user_id: 1,
       name: name
     }
     return this.httpClient.post(`${environment.url}/api/schedules`,body);

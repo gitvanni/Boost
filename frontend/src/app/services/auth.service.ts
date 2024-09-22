@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../environments/environment.development';
+import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
 
   signOut() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    return this.http.post(`${environment.url}/api/auth/signout`,{})
   }
 
   storeToken(token: string) {

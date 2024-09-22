@@ -6,34 +6,40 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { DiaryComponent } from './diary/diary.component';
 import { PagesComponent } from './pages/pages.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [{
     path:'home',
     component:HomeComponent
 },
 {
+    path:'userhome',
+    component: UserHomeComponent,
+    canActivate: [AuthGuard]
+},
+{
     path:'schedules',
-    component: ScheduleComponent
+    component: ScheduleComponent,
+    canActivate: [AuthGuard]
 },
 {
     path: 'schedules/task/:id',
-    component: TasksComponent
+    component: TasksComponent,
+    canActivate: [AuthGuard]
 },
 {
     path:'diaries',
-    component: DiaryComponent
+    component: DiaryComponent,
+    canActivate: [AuthGuard]
 },
 {
     path: 'diaries/pages/:id',
-    component: PagesComponent
-},
-{
-    path:'userhome',
-    component: UserHomeComponent
+    component: PagesComponent,
+    canActivate: [AuthGuard]
 },
 {
     path:'',
-    redirectTo: 'userhome',
+    redirectTo: 'home',
     pathMatch: 'full'
 },
 {

@@ -22,15 +22,15 @@
             <input 
               class="form-check-input" 
               type="checkbox" 
-              [(ngModel)]="task.isCompleted" 
-              (change)="toggleTaskCompletion(task.id,task.isCompleted)">
+              [(ngModel)]="task.is_completed" 
+              (change)="toggleTaskCompletion(task.id,task.is_completed)">
           </div>
-          <div [ngClass]="{'text-decoration-line-through': task.isCompleted}" class="flex-grow-1 mx-3">
+          <div [ngClass]="{'text-decoration-line-through': task.is_completed}" class="flex-grow-1 mx-3">
             <textarea 
               class="form-control" 
               [(ngModel)]="task.description" 
               (ngModelChange)="updateTask(task.id, task.description)"
-              [readonly]="task.isCompleted" 
+              [readonly]="task.is_completed" 
               rows="2" 
               placeholder="Edit Task Description">
             </textarea>

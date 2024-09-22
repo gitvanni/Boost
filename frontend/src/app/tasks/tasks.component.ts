@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Task } from '../task';
-import { SchedulesService } from '../schedules.service';
+import { Task } from '../models/task';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../services/tasks.service';
 import { Subject } from 'rxjs';
 import { debounceTime,distinctUntilChanged } from 'rxjs';
 
@@ -21,26 +20,22 @@ export class TasksComponent {
   schedule_id : number = 0; 
   tasks : Task[] = [];
   newTaskDescription: string = '';
-  private updateSubject = new Subject<{ task_id: number; content: string }>();  // Subject for debouncing updates 
+  private updateSubject = new Subject<{ task_id: number; content: string }>();  
 
   constructor(private route:ActivatedRoute,private taskService: TasksService){  }
 
   ngOnInit(){
     this.getTasks();
 
-    
-
-    // Debounce the updates with 300ms delay
     this.updateSubject.pipe(
-      debounceTime(500),                 // Delay of 300ms
+      debounceTime(500),                 
       distinctUntilChanged((prev, curr) => prev.content === curr.content)  // Ignore if content hasn't changed
     ).subscribe(({ task_id, content }) => {
       this.taskService.updateTask(this.schedule_id, task_id, content)
         .subscribe(() => {
-          this.getTasks();  // Refresh the task list after the update
+          this.getTasks(); 
         });
     });
-   // this.updateTask(task_id,content)});
   }
 
   sortTasksById(): void {
@@ -66,7 +61,7 @@ export class TasksComponent {
               this.getTasks();
           },
            error: (error) => {
-              console.error('Error creating task', error);
+              console.error(error.message);
             }
         })
      }
@@ -81,6 +76,5 @@ export class TasksComponent {
   }
   updateTask(task_id: number,content: string){
     this.updateSubject.next({ task_id, content }); 
-    //this.taskService.updateTask(this.schedule_id,task_id,content).subscribe(()=>{this.getTasks()})
   }
 }

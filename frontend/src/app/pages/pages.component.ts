@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Page } from '../page';
+import { Page } from '../models/page';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { PagesService } from '../pages.service';
+import { PagesService } from '../services/pages.service';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
@@ -23,16 +23,13 @@ export class PagesComponent {
   ngOnInit(){
     this.getPages();
 
-  
-
-     // Debounce the updates with 300ms delay
      this.updateSubject.pipe(
-      debounceTime(500),                 // Delay of 300ms
-      distinctUntilChanged((prev, curr) => prev.content === curr.content)  // Ignore if content hasn't changed
+      debounceTime(500),                 
+      distinctUntilChanged((prev, curr) => prev.content === curr.content)  
     ).subscribe(({ page_id, content }) => {
-      this.pagesService.updateTask(this.diary_id, page_id, content)
+      this.pagesService.updatePage(this.diary_id, page_id, content)
         .subscribe(() => {
-          this.getPages();  // Refresh the task list after the update
+          this.getPages();  
         });
     });
 
@@ -40,17 +37,12 @@ export class PagesComponent {
   }
 
   checkForTodayPage(): boolean {
-     // Get today's date
   const today = new Date();
   const todayStart = new Date(today.setHours(0, 0, 0, 0));
 
-  // Check if any page in the array has today's date
   return this.pages.some(page => {
-    // Convert the page date string to a Date object
-    const pageDate = new Date(page.date); // Assumes page.date is in 'YYYY-MM-DD' format
-    const pageDateStart = new Date(pageDate.setHours(0, 0, 0, 0)); // Normalize the page date
-    console.log(pageDate)
-    console.log(todayStart)
+    const pageDate = new Date(page.date); 
+    const pageDateStart = new Date(pageDate.setHours(0, 0, 0, 0)); 
     return this.isSameDay(pageDateStart, todayStart);
   });
   }
@@ -67,7 +59,6 @@ export class PagesComponent {
 }
 
 
-
 getPages(){
   this.route.params.subscribe(params =>{
     this.diary_id = params['id'];
@@ -75,11 +66,8 @@ getPages(){
       this.pages = pages;
       this.sortPageByDate();
 
-      if(this.checkForTodayPage()){
-     
-      }else{
+      if(!this.checkForTodayPage()){
         this.createPage()
-        console.log("no pages for this day")
       }
   });  
   });

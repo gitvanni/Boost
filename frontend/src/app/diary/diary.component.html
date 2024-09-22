@@ -1,5 +1,4 @@
 <div class="container mt-4">
-    <!-- Add Diary Section -->
     <div class="mb-4">
       <h3>Add a New Diary</h3>
       <div class="input-group">
@@ -15,7 +14,6 @@
       </div>
     </div>
   
-    <!-- List of Diaries -->
     <div class="card">
       <div class="card-header">
         <h3>Diaries</h3>
@@ -27,7 +25,6 @@
             <h5 class="mb-0">{{ diary.title }}</h5>
           </div>
           <div class="button-group">
-            <!-- Button to navigate to the Pages component -->
             <button
               class="btn btn-info btn-sm mr-2"
               [routerLink]="['pages', diary.id]"
@@ -35,7 +32,6 @@
               Go to diary!
             </button>
   
-            <!-- Button to delete the diary -->
             <button
               class="btn btn-danger btn-sm"
               (click)="deleteDiary(diary.id)"
@@ -50,7 +46,7 @@
     <div class="text-center"><button 
       class="btn btn-secondary  " 
       type="button" 
-      [routerLink] = "'..'">
+      [routerLink] = "'../userhome'">
       Back 
     </button>
   </div>

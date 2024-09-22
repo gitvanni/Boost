@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Page } from "./page";
-import { environment } from "../environments/environment.development";
+import { Page } from "../models/page";
+import { environment } from "../../environments/environment.development";
 
 @Injectable({
     providedIn: 'root'
@@ -23,12 +23,10 @@ export class PagesService{
         content : content,
         date : new Date() 
     }
-    const pappa  = new Date()
-    console.log(pappa)
     return this.httpClient.post(`${environment.url}/api/diary/${diary_id}/pages`,body)
 }
 
-public updateTask(diary_id:number, page_id: number , content: string){
+public updatePage(diary_id:number, page_id: number , content: string){
     const body = {
         content: content
     }

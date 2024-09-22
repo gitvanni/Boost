@@ -11,7 +11,7 @@ async function authenticateToken(req, res, next) {
         return res.status(401).json({ message: 'Invalid token' });
       }
   
-      req.user = data.user; // Attach the user info to the request
+      req.user = data.user; 
       next();
     } catch (err) {
       return res.status(403).json({ message: 'Forbidden' });

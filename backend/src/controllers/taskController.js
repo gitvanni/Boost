@@ -1,6 +1,5 @@
 const supabase = require('../config/supabaseClient');
 
-// Create a new task in a schedule
 const createTask = async (req, res) => {
   const{schedule_id} = req.params
   const { description } = req.body;
@@ -13,10 +12,10 @@ const createTask = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 
-  res.status(201).json("Task creata con successo!");
+  res.status(201).json({message:"Task successfully created!"});
 };
 
-// Get all tasks in a specific schedule
+
 const getTasks = async (req, res) => {
   const { schedule_id } = req.params;
 
@@ -32,24 +31,7 @@ const getTasks = async (req, res) => {
   res.status(200).json(data);
 };
 
-const getTask = async (req,res) => {
-  const  { schedule_id, task_id } = req.params;
 
-  const { data, error } = await supabase
-    .from('Tasks')
-    .select()
-    .eq('schedule_id', schedule_id)
-    .eq('id',task_id);
-
-  if (error) {
-    return res.status(500).json({ error: error.message });
-  }
-
-  res.status(200).json(data);
-}
-
-
-// Delete a task
 const deleteTask = async (req, res) => {
   const { schedule_id,task_id } = req.params;
 
@@ -66,7 +48,7 @@ const deleteTask = async (req, res) => {
   res.status(204).json();
 };
 
-//non bellissimo così, pero funziona...
+
 const updateTask = async (req,res) => {
   const { schedule_id,task_id } = req.params;
   const {update} = req.query;
@@ -83,7 +65,7 @@ const updateTask = async (req,res) => {
       return res.status(500).json({ error: error.message });
     }
   
-    res.status(201).json("Stato della task aggiornata!");
+    res.status(200).json({message: "Task status updated!"});
   }
 
   if(update==='content'){
@@ -96,16 +78,15 @@ const updateTask = async (req,res) => {
     .eq('id',task_id)
     .select();
 
-    console.log(data);
     if(error) {
       return res.status(500).json({ error: error.message });
     }
   
-    res.status(201).json("Task aggiornata!");
+    res.status(200).json({message:"Task updated!"});
 
   }
   
   
 }
 
-module.exports = { createTask, getTasks, getTask, deleteTask, updateTask };
+module.exports = { createTask, getTasks, deleteTask, updateTask };

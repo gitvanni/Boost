@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SchedulesService } from '../schedules.service';
-import { Schedule } from '../schedule';
+import { SchedulesService } from '../services/schedules.service';
+import { Schedule } from '../models/schedule';
 import { TasksComponent } from "../tasks/tasks.component";
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -43,7 +43,7 @@ export class ScheduleComponent {
         this.schedulesService.createSchedule(this.newScheduleName)
           .subscribe({
             next: (response) => {
-              this.newScheduleName = '';  // Clear the input field after adding
+              this.newScheduleName = '';  
               this.getSchedules();
             },
             error: (error) => {
@@ -53,11 +53,5 @@ export class ScheduleComponent {
       } else {
         alert('Schedule name cannot be empty');
       }
-    }/* 
-      this.schedulesService.createSchedule(name).subscribe(schedule=>{
-        this.getSchedules();
-      })
     }
-      */
-
 }

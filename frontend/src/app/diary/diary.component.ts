@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DiariesService } from '../diaries.service';
-import { Diary } from '../diary';
+import { DiariesService } from '../services/diaries.service';
+import { Diary } from '../models/diary';
 
 @Component({
   selector: 'app-diary',
@@ -38,15 +38,15 @@ export class DiaryComponent {
         this.diaryService.createDiary(this.newDiary)
           .subscribe({
             next: (response) => {
-              this.newDiary = '';  // Clear the input field after adding
+              this.newDiary = ''; 
               this.getDiaries();
             },
             error: (error) => {
-              console.error('Error creating schedule', error);
+              console.error(error.message);
             }
           });
       } else {
-        alert('Schedule name cannot be empty');
+        alert('Diary name cannot be empty');
       }
     }
 }
